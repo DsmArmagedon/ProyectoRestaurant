@@ -1,0 +1,113 @@
+<?php
+
+use App\Managers\BaseManager;
+?>
+
+
+
+<?php $__env->startSection('title'); ?>
+Crear Producto
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="portlet mt-element-ribbon light portlet-fit bordered">
+            <div class="ribbon ribbon-vertical-right ribbon-shadow ribbon-color-primary uppercase">
+                <div class="ribbon-sub ribbon-bookmark"></div>
+                <i class="fa fa-star" ></i>
+            </div>
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class=" icon-basket font-green"></i>
+                    <span class="caption-subject font-green bold uppercase">PRODUCTO</span>
+                </div>
+            </div>
+            <?php if($errors->has()): ?>
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                    <?php foreach($errors->all() as $error): ?>
+                    <li><?php echo e($error); ?></li>
+                    <?php endforeach; ?>    
+                </ul>
+            </div>
+            <?php endif; ?>
+            <div class="panel-body">
+                <form action="<?php echo e(route('products.update',[$product->id])); ?>" method="POST" id="formProduct" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label name="name">NOMBRE PRODUCTO</label>
+                        <input name="name" type="text" class="form-control validate[required,custom[onlyLetterSp]]" value="<?php echo e($product->name); ?>">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label name="unit">UNIDAD DE MEDIDA</label>
+                                <input name="unit" type="text" class="form-control validate[required,custom[onlyLetterSp]]" value="<?php echo e($product->unit); ?>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="status" class="control-label">ESTADO</label>
+                            <div class="row">
+                                <input type="radio" name="status" value="1" <?= $product->status == BaseManager::ENABLED ? 'checked' : '' ?> /> 
+                                <label >HABILITADO</label>
+                            </div>
+                            <div class="row">
+                                <input type="radio" name="status" value="0" <?= $product->status == BaseManager::DISABLED ? 'checked' : '' ?> />
+                                <label >DESHABILITADO</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                                <label for="image" class="control-label">IMAGEN</label>
+                            </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group space">
+                                <img class="thumbnail" alt="<?php echo e($product->name); ?>" style="width: 220px;height:190px " src="<?php echo e(asset('images/products/' . $product->id . '.' . $product->extension)); ?>"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"> </div>
+                                <div>
+                                    <span class="btn red btn-outline btn-file">
+                                        <span class="fileinput-new"> Seleccionar Imagen </span>
+                                        <span class="fileinput-exists"> Cambiar </span>
+                                        <input type="file" name="image" id="image"> </span>
+                                    <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Borrar </a>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <?php echo e(method_field('PUT')); ?>
+
+                        <?php echo e(csrf_field()); ?>
+
+                    
+                    
+                </form>
+            </div>
+            <div class="panel-footer">                
+                <button id="save" class="btn blue btn-outline">
+                    <i class="fa fa-save"></i>
+                    Guardar
+                </button>
+                <a href="<?php echo e(route('products.index')); ?>" class="btn green btn-outline">
+                    <i class="fa fa-close" ></i>
+                    Cancelar
+                </a>                          
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('scripts'); ?>
+<script src="<?php echo e(asset('apps/scripts/products/edit.js')); ?>" type="text/javascript"></script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('siderbar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,143 @@
+@section('siderbar')
+<li class="nav-item start active open">
+    <a href="{{route('home')}}" class="nav-link nav-toggle">
+        <i class="icon-home"></i>
+        <span class="title">INICIO</span>
+        <span class="selected"></span>
+
+    </a>
+</li>
+<li class="heading">
+    <h3 class="uppercase">ADMINISTRACION</h3>
+</li>
+<li class="nav-item">
+    <a href="javascript:;" class="nav-link nav-toggle">
+        <i class="icon-wallet"></i>
+        <span class="title">Administración Usuarios</span>
+        <span class="arrow open"></span>
+    </a>
+    <ul class="sub-menu">
+        <li class="nav-item">
+            <a href="{{route('users.create')}}" class="nav-link ">
+                <span class="title">Registrar Usuario</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{route('users.index')}}" class="nav-link ">
+                <span class="title">Listar Usuarios</span>
+            </a>
+        </li>
+    </ul>
+</li>
+<li class="heading">
+    <h3 class="uppercase">RESTAURANT</h3>
+</li>
+<li class="nav-item">
+    <a href="javascript:;" class="nav-link nav-toggle">
+        <i class="icon-basket"></i>
+        <span class="title">Productos</span>
+        <span class="arrow open"></span>
+    </a>
+    <ul class="sub-menu">
+        <li class="nav-item">
+            <a href="{{route('products.create')}}" class="nav-link ">
+                <span class="title">Registrar Producto</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{route('products.index')}}" class="nav-link ">
+                <span class="title">Listar Productos</span>
+            </a>
+    </ul>
+</li>
+<li class="nav-item">
+    <a href="javascript:;" class="nav-link nav-toggle">
+        <i class="glyphicon glyphicon-cutlery"></i>
+        <span class="title">Platos</span>
+        <span class="arrow open"></span>
+    </a>
+    <ul class="sub-menu">
+        <li class="nav-item">
+            <a href="{{route('plates.create')}}" class="nav-link ">
+                <span class="title">Registrar Plato</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{route('plates.index')}}" class="nav-link ">
+                <span class="title">Listar Platos</span>
+            </a>
+        </li>
+    </ul>
+</li>
+<li class="nav-item">
+    <a href="javascript:;" class="nav-link nav-toggle">
+        <i class="fa fa-cubes"></i>
+        <span class="title">Compra de Productos</span>
+        <span class="arrow open"></span>
+    </a>
+    <ul class="sub-menu">
+        <li class="nav-item">
+            <a href="{{route('purchases.create')}}" class="nav-link ">
+                <span class="title">Registrar Compra</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{route('purchases.index')}}" class="nav-link ">
+                <span class="title">Listar Compras</span>
+            </a>
+        </li>
+    </ul>
+</li>
+<li class="nav-item">
+    <a href="javascript:;" class="nav-link nav-toggle">
+        <i class="fa fa-coffee"></i>
+        <span class="title">Venta de Platos</span>
+        <span class="arrow open"></span>
+    </a>
+    <ul class="sub-menu">
+        <li class="nav-item">
+            <a href="{{route('sales.create')}}" class="nav-link ">
+                <span class="title">Registrar Venta</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{route('sales.index')}}" class="nav-link ">
+                <span class="title">Listar Ventas</span>
+            </a>
+        </li>
+    </ul>
+</li>
+<li class="nav-item">
+    <a href="javascript:;" class="nav-link nav-toggle">
+        <i class="glyphicon glyphicon-glass"></i>
+        <span class="title">Cocina</span>
+        <span class="arrow open"></span>
+    </a>
+        <ul class="sub-menu">
+            <li class="nav-item">
+                <a href="{{route('kitchens.create')}}" class="nav-link ">
+                    <span class="title">Registrar Plato a Cocinar</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route('kitchens.index')}}" class="nav-link ">
+                    <span class="title">Listar Platos Cocinados</span>
+                </a>
+            </li>
+        </ul>
+</li>
+<li class="nav-item">
+    <a href="javascript:;" class="nav-link nav-toggle">
+        <i class="icon-social-dropbox"></i>
+        <span class="title">Inventario</span>
+        <span class="arrow open"></span>
+    </a>
+</li>
+<li class="nav-item">
+    <a href="javascript:;" class="nav-link nav-toggle">
+        <i class="glyphicon glyphicon-stats"></i>
+        <span class="title">Reportes</span>
+        <span class="arrow open"></span>
+    </a>
+</li>
+@stop

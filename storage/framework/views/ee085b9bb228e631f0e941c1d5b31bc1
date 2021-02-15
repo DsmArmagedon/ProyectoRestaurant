@@ -1,0 +1,115 @@
+<?php $__env->startSection('title'); ?>
+Cambiar Password
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<?php if($errors->has()): ?>
+<div class="alert alert-danger" role="alert">
+    <ul>
+        <?php foreach($errors->all() as $error): ?>
+        <li><?php echo e($error); ?></li>
+        <?php endforeach; ?>    
+    </ul>
+</div>
+<?php endif; ?>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="portlet mt-element-ribbon light portlet-fit bordered">
+            <div class="ribbon ribbon-vertical-right ribbon-shadow ribbon-color-primary uppercase">
+                <div class="ribbon-sub ribbon-bookmark"></div>
+                <i class="fa fa-star" ></i>
+            </div>
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class=" fa fa-user font-green"></i>
+                    <span class="caption-subject font-green bold uppercase">CAMBIAR CONTRASEÑA</span>
+                </div>
+            </div>
+            <div class="panel-body">
+                <form action= "<?php echo e(route('users.updatePassword',[$user->id])); ?>" method="POST" name="formUser" id="formUser">      
+                <!--Primera fila formulario de registro-->
+                <div class="row">
+                    <?php echo Form::text('roles',$user->roles[0]->id,['hidden']); ?>
+
+                    <?php echo Form::text('status',$user->status,['hidden']); ?>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <?php echo Form::label('ci','CEDULA DE IDENTIDAD'); ?>
+
+                            <?php echo Form::text('ci',$user->ci,['class'=>'form-control','readonly']); ?>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <?php echo Form::label('name','NOMBRE'); ?>
+
+                            <?php echo Form::text('name',$user->name,['class'=>'form-control','readonly']); ?>
+
+                        </div>
+                    </div>
+                </div>
+                <!--Segunda fila de registro usuario-->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <?php echo Form::label('first_name','APELLIDO PATERNO'); ?>
+
+                            <?php echo Form::text('first_name',$user->first_name,['class'=>'form-control','readonly']); ?>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <?php echo Form::label('last_name','APELLIDO MATERNO'); ?>
+
+                            <?php echo Form::text('last_name',$user->last_name,['class'=>'form-control','readonly']); ?>
+
+                        </div>
+                    </div>
+                </div>    
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <?php echo Form::label('password','PASSWORD'); ?>
+
+                            <?php echo Form::password('password',['class'=>'form-control validate[required,minSize[6]] text-input','placeholder'=>'Contraseña']); ?>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <?php echo Form::label('conf_password','CONFIRMAR PASSWORD'); ?>
+
+                            <?php echo Form::password('conf_password',['class'=>'form-control validate[required,minSize[6],equals[password]] text-input','placeholder'=>'Repita la Contraseña']); ?>
+
+                        </div>
+                    </div>
+                </div>
+                <?php echo e(method_field('PUT')); ?>
+
+                <?php echo e(csrf_field()); ?>
+
+                </form>
+            </div>
+            <div class="panel-footer">                
+                <button id="save" class="btn blue btn-outline">
+                    <i class="fa fa-save"></i>
+                    Guardar
+                </button>
+                <a href="<?php echo e(route('home')); ?>" class="btn green btn-outline">
+                    <i class="fa fa-close" ></i>
+                    Cancelar
+                </a>                          
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('siderbar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

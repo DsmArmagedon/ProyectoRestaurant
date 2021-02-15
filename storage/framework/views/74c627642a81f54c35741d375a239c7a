@@ -1,0 +1,153 @@
+<?php $__env->startSection('title'); ?>
+Crear Usuario
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="portlet mt-element-ribbon light portlet-fit bordered">
+            <div class="ribbon ribbon-vertical-right ribbon-shadow ribbon-color-primary uppercase">
+                <div class="ribbon-sub ribbon-bookmark"></div>
+                <i class="fa fa-star" ></i>
+            </div>
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class=" fa fa-user font-green"></i>
+                    <span class="caption-subject font-green bold uppercase">USUARIO</span>
+                </div>
+            </div>
+            <?php if($errors->has()): ?>
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                    <?php foreach($errors->all() as $error): ?>
+                    <li><?php echo e($error); ?></li>
+                    <?php endforeach; ?>    
+                </ul>
+            </div>
+            <?php endif; ?>
+            <div class="panel-body">
+                <?php echo Form::open(['route'=>'users.store','method'=>'POST','id'=>'formUser']); ?>
+
+                <!--Primera fila formulario de registro-->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <?php echo Form::label('ci','CEDULA DE IDENTIDAD'); ?>
+
+                            <?php echo Form::text('ci',null,['class'=>'form-control validate[required,maxSize[9],custom[onlyNumberSp]]','placeholder'=>'Cedula de Identidad']); ?>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <?php echo Form::label('name','NOMBRE'); ?>
+
+                            <?php echo Form::text('name',null,['class'=>'form-control validate[required,custom[onlyLetterSp]] text-input','placeholder'=>'Nombre']); ?>
+
+                        </div>
+                    </div>
+                </div>
+                <!--Segunda fila de registro usuario-->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <?php echo Form::label('first_name','APELLIDO PATERNO'); ?>
+
+                            <?php echo Form::text('first_name',null,['class'=>'form-control validate[required,custom[onlyLetterSp]] text-input','placeholder'=>'Apellido Paterno']); ?>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <?php echo Form::label('last_name','APELLIDO MATERNO'); ?>
+
+                            <?php echo Form::text('last_name',null,['class'=>'form-control validate[required,custom[onlyLetterSp]] text-input','placeholder'=>'Apellido Materno']); ?>
+
+                        </div>
+                    </div>
+                </div>    
+                <div class="form-group">
+                    <?php echo Form::label('email','CORREO ELECTRONICO'); ?>
+
+                    <?php echo Form::text('email',null,['class'=>'form-control validate[required,custom[email]] text-input','value'=>'old(email)','placeholder'=>'Correo Electronico']); ?>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <?php echo Form::label('username','USUARIO'); ?>
+
+                            <?php echo Form::text('username',null,['class'=>'form-control validate[required,minSize[6]] text-input','placeholder'=>'Nombre de Usuario']); ?>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <?php echo Form::label('rol','ROL'); ?>
+
+                            <select name="roles" class="form-control select2">
+                                <?php foreach($roles as $rol): ?>
+                                <option value="<?php echo e($rol->id); ?>"><?php echo $rol->display_name; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <?php echo Form::label('password','PASSWORD'); ?>
+
+                            <?php echo Form::password('password',['class'=>'form-control validate[required,minSize[6]] text-input','placeholder'=>'Contraseña']); ?>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <?php echo Form::label('checkPassword','CONFIRMAR PASSWORD'); ?>
+
+                            <?php echo Form::password('checkPassword',['class'=>'form-control validate[required,minSize[6],equals[password]] text-input','placeholder'=>'Repita la Contraseña']); ?>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">                                
+                    <label for="status" class="control-label">ESTADO</label>
+                    <div>
+                        <div style="display: inline-block">
+                            <input type="radio" name="status" value="1" checked/> 
+                            <label >Habilitado</label>
+                        </div>
+                        <div style="display: inline-block">
+                            <input type="radio" name="status" value="0"/>
+                            <label >Deshabilitado</label>
+                        </div>
+                    </div>
+                </div>
+
+                <?php echo Form::close(); ?>
+
+            </div>
+            <div class="panel-footer">                
+                <button id="save" class="btn blue btn-outline">
+                    <i class="fa fa-save"></i>
+                    Guardar
+                </button>
+                <a href="<?php echo e(route('users.index')); ?>" class="btn green btn-outline">
+                    <i class="fa fa-close" ></i>
+                    Cancelar
+                </a>                          
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('scripts'); ?>
+<script src="<?php echo e(asset('apps/scripts/users/create.js')); ?>" type="text/javascript"></script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('siderbar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
